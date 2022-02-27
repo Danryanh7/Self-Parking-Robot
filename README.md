@@ -13,13 +13,15 @@ reversing, straightening itself out, then moving forward if it is too close to t
 does a parallel park, it should raise the banner upon completion.
 
 ## Non-Trivial Function Descriptions
+### findParkingSpaeAndPark
 The primary objective of "findParkingSpaceAndPark" is to locate a suitable parking space for the robot
 under several constraints. Once a parking space is found, the "parallelPark" function is called which
 satisfies its secondary objective. This function initiates by declaring several variables that contain; the
 gap distance between two cars (float gapDistance), the number of failed parallel parking attempts (int
 carCount), and a boolean that determines if the parallel parking attempt was successful (bool finished)
 A constant integer is also declared which helps convert angular encoder measurements to centimetres
-(const int encToCM)
+(const int encToCM).
+
 A while loop is then initialized which loops if the number of parallel parking attempts is less than the
 predefined constant of max attempts and if "finished" has a value of "false". The
 motors are then turned on and the "searchForCar" function is called with the parameter "true" to look
@@ -30,6 +32,7 @@ between the two vehicles may be measured and the "searchForCar" function is call
 the parameter "true". Once the second car is sensed, the motors are turned off
 and the gap distance is set equal to the absolute value of the encoder value of motorA multiplied by
 "encToCM".
+
 A number of end conditions are then checked. If gapDistance is greater than the predefined constant
 "MINIMUM_GAP_NEEDED", the parallelPark function is called and "finished" is set
 to "true". If "TIMER" becomes greater than the constant
@@ -37,11 +40,13 @@ to "true". If "TIMER" becomes greater than the constant
 searching for a parking space if the robot "runs out of fuel" in this fictitious scenario without interfering
 with the maximum attempt counter. If both preceding statements are false, "carCount" is incremented
 and "finished" is returned with value "false"
-waitForGreenCard
+
+### waitForGreenCard
 This function waits for the presence of the green "key" before the robot begins to search for a parallel
 parking spot. A while loop loops infinitely whilst the colour green is not sensed by
 the colour sensor
-searchForCar
+
+### searchForCar
 The "searchForCar" function is called to both actively look for a car, or to search for empty space by
 inverting the search condition. This function accepts a boolean parameter "lookingForCar". If
 "lookingForCar" is true, a while loop is declared which loops until the ultrasonic sensor located on the
@@ -58,16 +63,18 @@ side ultrasonic sensor is greater than "VALID_DISTANCE", empty space is found
 The value of "TIMER" is then checked. If the value of "TIMER" is greater than
 "MAX TIME FOR ATTEMPT", the motors are turned off.
 
-parallelPark
+### parallelPark
 "parallelPark" calls several functions (parkingLineUp, reverselntoSpot, pullForward), to simulate parallel
 parking the vehicle.
-parkingLineUp:
+
+### parkingLineUp:
 "parkingLine Up" is a function that drives the robot forwards a distance equal to one-third of the robot
 body (measured in centimetres) such that the robot is positioned to reverse into the parking spot when
 the "reverselntoSpot" function is called. The function turns on the motors, resets the encoder of motorA
 and calls the "driveDistanceCM" function. The parameters passed to the "driveDistanceCM" function are
 the distance one desires to move the robot (one-third of the robot body), and the direction (forwards).
-reverselntoSpot
+
+### reverselntoSpot
 "reverselntoSpot" is the function that facilitates the parallel parking action of the robot. This function
 takes a parameter "distanceToCar" which measures the distance between the adjacent side of the robot
 to the second car detected. The function first rotates the robot clockwise 45 degrees and drives the
@@ -76,14 +83,16 @@ position the robot between two cars. The robot will then rotate counterclockwise
 the robot will be positioned parallel to the cars it is parking between. The function then calls the
 "pullForward" function, which drives the robot forwards such that the robot is an appropriate distance
 away from the rear car.
-pullForward
+
+### pullForward
 "pullForward" is called within the "reverselntoSpot" function to position the robot an appropriate
 distance away from the rear car. This distance was determined to be 5 centimetres, which was given the
 constant "DISTANCE FROM CAR". The function turns on the motors, and drives forwards until the rear
 ultrasonic sensor returns a value greater than "DISTANCE FROM CAR". If the rear ultrasonic sensor
 already returns a value greater than "DISTANCE_FROM _CAR", the robot will not move forwards as was
 already an appropriate distance away from the rear car. Finally, the function turns off the motors.
-toggleBanner
+
+### toggleBanner
 "toggleBanner" is responsible for both raising the successful completion flag, as well as lowering the
 flag. The function accepts an integer parameter called "isRaised" which dictates whether "toggleBanner"
 raises or lowers the flag. The parameter "isRaised" can be a value of "1', or "-1'. The "FLAG_MOTOR"
