@@ -13,7 +13,7 @@ reversing, straightening itself out, then moving forward if it is too close to t
 does a parallel park, it should raise the banner upon completion.
 
 ## Non-Trivial Function Descriptions
-### findParkingSpaeAndPark
+### findParkingSpaceAndPark
 The primary objective of "findParkingSpaceAndPark" is to locate a suitable parking space for the robot
 under several constraints. Once a parking space is found, the "parallelPark" function is called which
 satisfies its secondary objective. This function initiates by declaring several variables that contain; the
