@@ -1,7 +1,7 @@
 # Self-Parking-Robot
 Robot C code for a self parking LEGO MINDSTORM EV3 for the final project of MTE_121
 
-## Introduction
+## Description
 The goal of our project was to program the Lego EV3 robot to drive until an open parking space is
 detected, then perform a parallel park in that spot. Once the robot is turned on, it will be on standby
 until the "car key" triggers the program to start. Once the robot has started driving, a 30-second timer
